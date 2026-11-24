@@ -1,0 +1,75 @@
+﻿@model StudentJobsCR.Models.T_Empresas
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Empresas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CedulaJuridica_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CedulaJuridica_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sector_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sector_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Usuarios.Cedula_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Usuarios.Cedula_Usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Empresa }) |
+    @Html.ActionLink("Devuelta a la lista", "Index")
+</p>

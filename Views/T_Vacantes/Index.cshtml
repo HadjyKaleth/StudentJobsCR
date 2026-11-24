@@ -1,0 +1,88 @@
+﻿@model IEnumerable<StudentJobsCR.Models.T_Vacantes>
+
+@{
+    ViewBag.Title = "Vacantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vacantes</h2>
+
+<p>
+    @Html.ActionLink("Crear nuvea vacante", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requisitos_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salario_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modalidad_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horario_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPublicacion_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCierre_Vacante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Categorias.Nombre_Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Empresas.CedulaJuridica_Empresa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requisitos_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salario_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modalidad_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horario_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPublicacion_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCierre_Vacante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Categorias.Nombre_Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Empresas.CedulaJuridica_Empresa)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Vacante }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id_Vacante }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Vacante })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,73 @@
+﻿@model StudentJobsCR.Models.T_Usuarios
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro que quiere eliminar este usuario?</h3>
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro_Usuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Devuelta a la lista", "Index")
+        </div>
+    }
+</div>

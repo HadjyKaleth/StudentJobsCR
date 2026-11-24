@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>StudentJobsCR</h1>
+    <p class="lead">StudentsJobCR es una pagina web que proporciona ofertas laborales de nivel de entrada a universitarios.</p>
+    <p>@Html.ActionLink("Sobre nosotros", "About", "Home")</p>
+</div>
+
+@if (Session["Rol"] != null)
+{
+    <div class="col-md-4">
+        <h2>Vacantes</h2>
+        <p>Consulta las oportunidades laborales disponibles para estudiantes.</p>
+        <p>@Html.ActionLink("Ver más »", "Index", "T_Vacantes", null, new { @class = "btn btn-default" })</p>
+    </div>
+}
+@if (Session["Rol"] != null && Session["Rol"].ToString() == "Admin")
+{
+    <div class="col-md-4">
+        <h2>Empresas</h2>
+        <p>Visualiza las empresas registradas en la plataforma.</p>
+        <p>@Html.ActionLink("Ver más »", "Index", "T_Empresas", null, new { @class = "btn btn-default" })</p>
+    </div>
+}
+@if (Session["Rol"] != null && Session["Rol"].ToString() == "Admin")
+{
+    <div class="col-md-4">
+        <h2>Estudiantes</h2>
+        <p>Consulta los perfiles de estudiantes registrados.</p>
+        <p>@Html.ActionLink("Ver más »", "Index", "T_Estudiantes", null, new { @class = "btn btn-default" })</p>
+    </div>
+}
+@if (Session["Rol"] != null && Session["Rol"].ToString() == "Admin")
+{
+    <div class="col-md-4">
+        <h2>Categorías</h2>
+        <p>Clasificación de las vacantes por áreas profesionales.</p>
+        <p>@Html.ActionLink("Ver más »", "Index", "T_Categorias", null, new { @class = "btn btn-default" })</p>
+    </div>
+}
+@if (Session["Rol"] != null && Session["Rol"].ToString() == "Estudiante")
+{
+    <div class="col-md-4">
+        <h2>Postulaciones</h2>
+        <p>Revisa las postulaciones realizadas por los estudiantes.</p>
+        <p>@Html.ActionLink("Ver más »", "Index", "T_Postulaciones", null, new { @class = "btn btn-default" })</p>
+    </div>
+}

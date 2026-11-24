@@ -1,0 +1,59 @@
+﻿@model StudentJobsCR.Models.T_Postulaciones
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Postulaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPostulacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPostulacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_Postulacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_Postulacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nota_Postulacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota_Postulacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Estudiantes.Cedula_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Estudiantes.Cedula_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Vacantes.Titulo_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Vacantes.Titulo_Vacante)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Postulacion }) |
+    @Html.ActionLink("Devuelta a la lista", "Index")
+</p>

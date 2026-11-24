@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_StudentJobsCRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Categorias">
+          <Key>
+            <PropertyRef Name="Id_Categoria" />
+          </Key>
+          <Property Name="Id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Categoria" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Descripcion_Categoria" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="T_Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CedulaJuridica_Empresa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre_Empresa" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Sector_Empresa" Type="varchar" MaxLength="80" />
+          <Property Name="Telefono_Empresa" Type="varchar" MaxLength="20" />
+          <Property Name="Email_Empresa" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descripcion_Empresa" Type="varchar" MaxLength="500" />
+          <Property Name="Id_Usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Estudiantes">
+          <Key>
+            <PropertyRef Name="Id_Estudiante" />
+          </Key>
+          <Property Name="Id_Estudiante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cedula_Estudiante" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre_Estudiante" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaNacimiento_Estudiante" Type="date" />
+          <Property Name="Telefono_Estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="Universidad_Estudiante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Carrera_Estudiante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="AnioAcademico_Estudiante" Type="int" Nullable="false" />
+          <Property Name="Disponibilidad_Estudiante" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Habilidades_Estudiante" Type="varchar" MaxLength="500" />
+          <Property Name="Id_Usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Postulaciones">
+          <Key>
+            <PropertyRef Name="Id_Postulacion" />
+          </Key>
+          <Property Name="Id_Postulacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaPostulacion" Type="datetime" Nullable="false" />
+          <Property Name="Estado_Postulacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nota_Postulacion" Type="varchar" MaxLength="500" />
+          <Property Name="Id_Estudiante" Type="int" Nullable="false" />
+          <Property Name="Id_Vacante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cedula_Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email_Usuario" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password_Usuario" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Rol_Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaRegistro_Usuario" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Vacantes">
+          <Key>
+            <PropertyRef Name="Id_Vacante" />
+          </Key>
+          <Property Name="Id_Vacante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo_Vacante" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descripcion_Vacante" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Requisitos_Vacante" Type="varchar" MaxLength="500" />
+          <Property Name="Salario_Vacante" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Modalidad_Vacante" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Horario_Vacante" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FechaPublicacion_Vacante" Type="datetime" Nullable="false" />
+          <Property Name="FechaCierre_Vacante" Type="datetime" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Categoria" Type="int" />
+        </EntityType>
+        <Association Name="FK_Empresas_Usuarios">
+          <End Role="T_Usuarios" Type="Self.T_Usuarios" Multiplicity="1" />
+          <End Role="T_Empresas" Type="Self.T_Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="T_Empresas">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Usuarios">
+          <End Role="T_Usuarios" Type="Self.T_Usuarios" Multiplicity="1" />
+          <End Role="T_Estudiantes" Type="Self.T_Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="T_Estudiantes">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postulaciones_Estudiantes">
+          <End Role="T_Estudiantes" Type="Self.T_Estudiantes" Multiplicity="1" />
+          <End Role="T_Postulaciones" Type="Self.T_Postulaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Estudiantes">
+              <PropertyRef Name="Id_Estudiante" />
+            </Principal>
+            <Dependent Role="T_Postulaciones">
+              <PropertyRef Name="Id_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postulaciones_Vacantes">
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="1" />
+          <End Role="T_Postulaciones" Type="Self.T_Postulaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Vacantes">
+              <PropertyRef Name="Id_Vacante" />
+            </Principal>
+            <Dependent Role="T_Postulaciones">
+              <PropertyRef Name="Id_Vacante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacantes_Categorias">
+          <End Role="T_Categorias" Type="Self.T_Categorias" Multiplicity="0..1" />
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Categorias">
+              <PropertyRef Name="Id_Categoria" />
+            </Principal>
+            <Dependent Role="T_Vacantes">
+              <PropertyRef Name="Id_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacantes_Empresas">
+          <End Role="T_Empresas" Type="Self.T_Empresas" Multiplicity="1" />
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="T_Vacantes">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_StudentJobsCRModelStoreContainer">
+          <EntitySet Name="T_Categorias" EntityType="Self.T_Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Empresas" EntityType="Self.T_Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Estudiantes" EntityType="Self.T_Estudiantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Postulaciones" EntityType="Self.T_Postulaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Usuarios" EntityType="Self.T_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Vacantes" EntityType="Self.T_Vacantes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Empresas_Usuarios" Association="Self.FK_Empresas_Usuarios">
+            <End Role="T_Usuarios" EntitySet="T_Usuarios" />
+            <End Role="T_Empresas" EntitySet="T_Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Usuarios" Association="Self.FK_Estudiantes_Usuarios">
+            <End Role="T_Usuarios" EntitySet="T_Usuarios" />
+            <End Role="T_Estudiantes" EntitySet="T_Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postulaciones_Estudiantes" Association="Self.FK_Postulaciones_Estudiantes">
+            <End Role="T_Estudiantes" EntitySet="T_Estudiantes" />
+            <End Role="T_Postulaciones" EntitySet="T_Postulaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postulaciones_Vacantes" Association="Self.FK_Postulaciones_Vacantes">
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+            <End Role="T_Postulaciones" EntitySet="T_Postulaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacantes_Categorias" Association="Self.FK_Vacantes_Categorias">
+            <End Role="T_Categorias" EntitySet="T_Categorias" />
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacantes_Empresas" Association="Self.FK_Vacantes_Empresas">
+            <End Role="T_Empresas" EntitySet="T_Empresas" />
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_StudentJobsCRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Categorias">
+          <Key>
+            <PropertyRef Name="Id_Categoria" />
+          </Key>
+          <Property Name="Id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Categoria" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion_Categoria" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Vacantes" Relationship="Self.FK_Vacantes_Categorias" FromRole="T_Categorias" ToRole="T_Vacantes" />
+        </EntityType>
+        <EntityType Name="T_Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CedulaJuridica_Empresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_Empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sector_Empresa" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono_Empresa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion_Empresa" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_Usuarios" Relationship="Self.FK_Empresas_Usuarios" FromRole="T_Empresas" ToRole="T_Usuarios" />
+          <NavigationProperty Name="T_Vacantes" Relationship="Self.FK_Vacantes_Empresas" FromRole="T_Empresas" ToRole="T_Vacantes" />
+        </EntityType>
+        <EntityType Name="T_Estudiantes">
+          <Key>
+            <PropertyRef Name="Id_Estudiante" />
+          </Key>
+          <Property Name="Id_Estudiante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula_Estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_Estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaNacimiento_Estudiante" Type="DateTime" Precision="0" />
+          <Property Name="Telefono_Estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Universidad_Estudiante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Carrera_Estudiante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AnioAcademico_Estudiante" Type="Int32" Nullable="false" />
+          <Property Name="Disponibilidad_Estudiante" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Habilidades_Estudiante" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_Usuarios" Relationship="Self.FK_Estudiantes_Usuarios" FromRole="T_Estudiantes" ToRole="T_Usuarios" />
+          <NavigationProperty Name="T_Postulaciones" Relationship="Self.FK_Postulaciones_Estudiantes" FromRole="T_Estudiantes" ToRole="T_Postulaciones" />
+        </EntityType>
+        <EntityType Name="T_Postulaciones">
+          <Key>
+            <PropertyRef Name="Id_Postulacion" />
+          </Key>
+          <Property Name="Id_Postulacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaPostulacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado_Postulacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nota_Postulacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Estudiante" Type="Int32" Nullable="false" />
+          <Property Name="Id_Vacante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_Estudiantes" Relationship="Self.FK_Postulaciones_Estudiantes" FromRole="T_Postulaciones" ToRole="T_Estudiantes" />
+          <NavigationProperty Name="T_Vacantes" Relationship="Self.FK_Postulaciones_Vacantes" FromRole="T_Postulaciones" ToRole="T_Vacantes" />
+        </EntityType>
+        <EntityType Name="T_Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password_Usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rol_Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaRegistro_Usuario" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="T_Empresas" Relationship="Self.FK_Empresas_Usuarios" FromRole="T_Usuarios" ToRole="T_Empresas" />
+          <NavigationProperty Name="T_Estudiantes" Relationship="Self.FK_Estudiantes_Usuarios" FromRole="T_Usuarios" ToRole="T_Estudiantes" />
+        </EntityType>
+        <EntityType Name="T_Vacantes">
+          <Key>
+            <PropertyRef Name="Id_Vacante" />
+          </Key>
+          <Property Name="Id_Vacante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo_Vacante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion_Vacante" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Requisitos_Vacante" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Salario_Vacante" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Modalidad_Vacante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Horario_Vacante" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaPublicacion_Vacante" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaCierre_Vacante" Type="DateTime" Precision="3" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Categoria" Type="Int32" />
+          <NavigationProperty Name="T_Categorias" Relationship="Self.FK_Vacantes_Categorias" FromRole="T_Vacantes" ToRole="T_Categorias" />
+          <NavigationProperty Name="T_Empresas" Relationship="Self.FK_Vacantes_Empresas" FromRole="T_Vacantes" ToRole="T_Empresas" />
+          <NavigationProperty Name="T_Postulaciones" Relationship="Self.FK_Postulaciones_Vacantes" FromRole="T_Vacantes" ToRole="T_Postulaciones" />
+        </EntityType>
+        <Association Name="FK_Vacantes_Categorias">
+          <End Role="T_Categorias" Type="Self.T_Categorias" Multiplicity="0..1" />
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Categorias">
+              <PropertyRef Name="Id_Categoria" />
+            </Principal>
+            <Dependent Role="T_Vacantes">
+              <PropertyRef Name="Id_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresas_Usuarios">
+          <End Role="T_Usuarios" Type="Self.T_Usuarios" Multiplicity="1" />
+          <End Role="T_Empresas" Type="Self.T_Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="T_Empresas">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacantes_Empresas">
+          <End Role="T_Empresas" Type="Self.T_Empresas" Multiplicity="1" />
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="T_Vacantes">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Usuarios">
+          <End Role="T_Usuarios" Type="Self.T_Usuarios" Multiplicity="1" />
+          <End Role="T_Estudiantes" Type="Self.T_Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="T_Estudiantes">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postulaciones_Estudiantes">
+          <End Role="T_Estudiantes" Type="Self.T_Estudiantes" Multiplicity="1" />
+          <End Role="T_Postulaciones" Type="Self.T_Postulaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Estudiantes">
+              <PropertyRef Name="Id_Estudiante" />
+            </Principal>
+            <Dependent Role="T_Postulaciones">
+              <PropertyRef Name="Id_Estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postulaciones_Vacantes">
+          <End Role="T_Vacantes" Type="Self.T_Vacantes" Multiplicity="1" />
+          <End Role="T_Postulaciones" Type="Self.T_Postulaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Vacantes">
+              <PropertyRef Name="Id_Vacante" />
+            </Principal>
+            <Dependent Role="T_Postulaciones">
+              <PropertyRef Name="Id_Vacante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_StudentJobsCREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Categorias" EntityType="Self.T_Categorias" />
+          <EntitySet Name="T_Empresas" EntityType="Self.T_Empresas" />
+          <EntitySet Name="T_Estudiantes" EntityType="Self.T_Estudiantes" />
+          <EntitySet Name="T_Postulaciones" EntityType="Self.T_Postulaciones" />
+          <EntitySet Name="T_Usuarios" EntityType="Self.T_Usuarios" />
+          <EntitySet Name="T_Vacantes" EntityType="Self.T_Vacantes" />
+          <AssociationSet Name="FK_Vacantes_Categorias" Association="Self.FK_Vacantes_Categorias">
+            <End Role="T_Categorias" EntitySet="T_Categorias" />
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresas_Usuarios" Association="Self.FK_Empresas_Usuarios">
+            <End Role="T_Usuarios" EntitySet="T_Usuarios" />
+            <End Role="T_Empresas" EntitySet="T_Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacantes_Empresas" Association="Self.FK_Vacantes_Empresas">
+            <End Role="T_Empresas" EntitySet="T_Empresas" />
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Usuarios" Association="Self.FK_Estudiantes_Usuarios">
+            <End Role="T_Usuarios" EntitySet="T_Usuarios" />
+            <End Role="T_Estudiantes" EntitySet="T_Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postulaciones_Estudiantes" Association="Self.FK_Postulaciones_Estudiantes">
+            <End Role="T_Estudiantes" EntitySet="T_Estudiantes" />
+            <End Role="T_Postulaciones" EntitySet="T_Postulaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postulaciones_Vacantes" Association="Self.FK_Postulaciones_Vacantes">
+            <End Role="T_Vacantes" EntitySet="T_Vacantes" />
+            <End Role="T_Postulaciones" EntitySet="T_Postulaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_StudentJobsCRModelStoreContainer" CdmEntityContainer="BD_StudentJobsCREntities">
+          <EntitySetMapping Name="T_Categorias">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Categorias">
+              <MappingFragment StoreEntitySet="T_Categorias">
+                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+                <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre_Categoria" />
+                <ScalarProperty Name="Descripcion_Categoria" ColumnName="Descripcion_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Empresas">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Empresas">
+              <MappingFragment StoreEntitySet="T_Empresas">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="CedulaJuridica_Empresa" ColumnName="CedulaJuridica_Empresa" />
+                <ScalarProperty Name="Nombre_Empresa" ColumnName="Nombre_Empresa" />
+                <ScalarProperty Name="Sector_Empresa" ColumnName="Sector_Empresa" />
+                <ScalarProperty Name="Telefono_Empresa" ColumnName="Telefono_Empresa" />
+                <ScalarProperty Name="Email_Empresa" ColumnName="Email_Empresa" />
+                <ScalarProperty Name="Descripcion_Empresa" ColumnName="Descripcion_Empresa" />
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Estudiantes">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Estudiantes">
+              <MappingFragment StoreEntitySet="T_Estudiantes">
+                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
+                <ScalarProperty Name="Cedula_Estudiante" ColumnName="Cedula_Estudiante" />
+                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
+                <ScalarProperty Name="FechaNacimiento_Estudiante" ColumnName="FechaNacimiento_Estudiante" />
+                <ScalarProperty Name="Telefono_Estudiante" ColumnName="Telefono_Estudiante" />
+                <ScalarProperty Name="Universidad_Estudiante" ColumnName="Universidad_Estudiante" />
+                <ScalarProperty Name="Carrera_Estudiante" ColumnName="Carrera_Estudiante" />
+                <ScalarProperty Name="AnioAcademico_Estudiante" ColumnName="AnioAcademico_Estudiante" />
+                <ScalarProperty Name="Disponibilidad_Estudiante" ColumnName="Disponibilidad_Estudiante" />
+                <ScalarProperty Name="Habilidades_Estudiante" ColumnName="Habilidades_Estudiante" />
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Postulaciones">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Postulaciones">
+              <MappingFragment StoreEntitySet="T_Postulaciones">
+                <ScalarProperty Name="Id_Postulacion" ColumnName="Id_Postulacion" />
+                <ScalarProperty Name="FechaPostulacion" ColumnName="FechaPostulacion" />
+                <ScalarProperty Name="Estado_Postulacion" ColumnName="Estado_Postulacion" />
+                <ScalarProperty Name="Nota_Postulacion" ColumnName="Nota_Postulacion" />
+                <ScalarProperty Name="Id_Estudiante" ColumnName="Id_Estudiante" />
+                <ScalarProperty Name="Id_Vacante" ColumnName="Id_Vacante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Usuarios">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Usuarios">
+              <MappingFragment StoreEntitySet="T_Usuarios">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Cedula_Usuario" ColumnName="Cedula_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Email_Usuario" ColumnName="Email_Usuario" />
+                <ScalarProperty Name="Password_Usuario" ColumnName="Password_Usuario" />
+                <ScalarProperty Name="Rol_Usuario" ColumnName="Rol_Usuario" />
+                <ScalarProperty Name="FechaRegistro_Usuario" ColumnName="FechaRegistro_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Vacantes">
+            <EntityTypeMapping TypeName="BD_StudentJobsCRModel.T_Vacantes">
+              <MappingFragment StoreEntitySet="T_Vacantes">
+                <ScalarProperty Name="Id_Vacante" ColumnName="Id_Vacante" />
+                <ScalarProperty Name="Titulo_Vacante" ColumnName="Titulo_Vacante" />
+                <ScalarProperty Name="Descripcion_Vacante" ColumnName="Descripcion_Vacante" />
+                <ScalarProperty Name="Requisitos_Vacante" ColumnName="Requisitos_Vacante" />
+                <ScalarProperty Name="Salario_Vacante" ColumnName="Salario_Vacante" />
+                <ScalarProperty Name="Modalidad_Vacante" ColumnName="Modalidad_Vacante" />
+                <ScalarProperty Name="Horario_Vacante" ColumnName="Horario_Vacante" />
+                <ScalarProperty Name="FechaPublicacion_Vacante" ColumnName="FechaPublicacion_Vacante" />
+                <ScalarProperty Name="FechaCierre_Vacante" ColumnName="FechaCierre_Vacante" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

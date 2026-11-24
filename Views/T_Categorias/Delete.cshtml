@@ -1,0 +1,41 @@
+﻿@model StudentJobsCR.Models.T_Categorias
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que quieres eliminar esta categoria?</h3>
+<div>
+    <h4>Categorias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion_Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion_Categoria)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="ELiminar" class="btn btn-default" /> |
+            @Html.ActionLink("Devuelta a la lista", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StudentJobsCR.Models.T_Empresas>
+
+@{
+    ViewBag.Title = "Empresas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Empresas</h2>
+
+<p>
+    @Html.ActionLink("Ingresar nueva Empresa", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CedulaJuridica_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sector_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Usuarios.Cedula_Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CedulaJuridica_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sector_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion_Empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Usuarios.Cedula_Usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Empresa }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id_Empresa }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Empresa })
+        </td>
+    </tr>
+}
+
+</table>

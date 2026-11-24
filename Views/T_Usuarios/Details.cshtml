@@ -1,0 +1,67 @@
+﻿@model StudentJobsCR.Models.T_Usuarios
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro_Usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Usuario }) |
+    @Html.ActionLink("Devuelta a la lista", "Index")
+</p>

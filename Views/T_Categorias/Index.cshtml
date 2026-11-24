@@ -1,0 +1,40 @@
+﻿@model IEnumerable<StudentJobsCR.Models.T_Categorias>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Categorias o Puestos laborales</h2>
+
+<p>
+    @Html.ActionLink("Crear Categoria", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion_Categoria)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion_Categoria)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Categoria }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id_Categoria }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Categoria })
+        </td>
+    </tr>
+}
+
+</table>

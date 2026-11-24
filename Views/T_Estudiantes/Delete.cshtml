@@ -1,0 +1,105 @@
+﻿@model StudentJobsCR.Models.T_Estudiantes
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro que quieres eliminar este estudiante?</h3>
+<div>
+    <h4>Estudiantes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Universidad_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Universidad_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carrera_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carrera_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnioAcademico_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnioAcademico_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disponibilidad_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disponibilidad_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilidades_Estudiante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilidades_Estudiante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Usuarios.Cedula_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Usuarios.Cedula_Usuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Devuelta a la lista", "Index")
+        </div>
+    }
+</div>

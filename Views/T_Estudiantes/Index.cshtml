@@ -1,0 +1,88 @@
+﻿@model IEnumerable<StudentJobsCR.Models.T_Estudiantes>
+
+@{
+    ViewBag.Title = "Estudiantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Estudiantes</h2>
+
+<p>
+    @Html.ActionLink("Ingresar Estudiante", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Universidad_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrera_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnioAcademico_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponibilidad_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Habilidades_Estudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.T_Usuarios.Cedula_Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Universidad_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrera_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnioAcademico_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disponibilidad_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Habilidades_Estudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Usuarios.Cedula_Usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id_Estudiante }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id_Estudiante }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id_Estudiante })
+        </td>
+    </tr>
+}
+
+</table>

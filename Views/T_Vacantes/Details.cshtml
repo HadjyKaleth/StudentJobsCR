@@ -1,0 +1,99 @@
+﻿@model StudentJobsCR.Models.T_Vacantes
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Vacantes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requisitos_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requisitos_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salario_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salario_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modalidad_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modalidad_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPublicacion_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPublicacion_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCierre_Vacante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCierre_Vacante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Categorias.Nombre_Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Categorias.Nombre_Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.T_Empresas.CedulaJuridica_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.T_Empresas.CedulaJuridica_Empresa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id_Vacante }) |
+    @Html.ActionLink("Devuelta a la lista", "Index")
+</p>
